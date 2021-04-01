@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <script src="js/index.js" type="module" defer></script>
+</head>
+<body>
+    <div class="tooltip">
+        <div class="tooltip__tip">
+            <p class="tooltip__content"></p>
+            <div class="tooltip__close"><span>x</span></div>
+        </div>
+
+    </div>
+    <div class="game">
+        <div class="game__welcome" show="<%= show %>">
+            <a href="/highscores">
+                <div class="highscores-icon">
+                    <img src="assets/images/highscores.svg" alt="highscore icon">
+                    <h3>HighScores</h3>
+                </div>
+            </a>
+            <div class="game__welcome-content">
+                <img src="assets/images/welcome-egg.jpg" alt="bunny egg">
+                <h1>Welcome to our Easter Egg catcher game!</h1>
+                <p class="game__welcome-content-info">
+                    Please enter a username of your choice and your email address, the highest scores will win prizes! The goal of the game is
+                    to catch as many eggs as possible before you run out of lives. The game will get progressively harder as time goes on, so
+                    keep on your toes! You can play as many times as you like. Happy catching!</p>
+                <div class="message">
+                    <p><%= message %></p>
+                </div>
+                <form class="game__welcome-form" action="/score" method="post">
+                    <input id="name" type="text" placeholder="Enter Username:" name="name">
+                    <input type="email" placeholder="Enter Email:" name="email">
+                    <button class="game__welcome-btn" type="submit" class="game__welcome-btn">Submit</button>
+                </form>
+                <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            </div>
+        </div>
+        <div class="game__paused">
+            <div class="game__paused-content">
+                <h1>Game Paused</h1>
+                <button class="game__paused-btn">Continue</button>
+            </div>
+        </div>
+        <div class="game__over">
+            <div class="game__over-content">
+                <h1>Game Over!</h1>
+                <h2>Score: <span class="final-score"></span></h2>
+                <div class="buttons">
+                    <button class="game__over-submit-btn">Submit Score</button>
+                    <button class="game__over-btn">Play Again</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="hud">
+            <div class="hud__score">Score: <span class="score"></span></div>
+            <div class="hud__lives">Lives: <span class="lives"></span></div>
+        </div>
+    </div>
+</body>
+</html>

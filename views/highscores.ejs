@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Highscores</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="highscores">
+        <a href="/">
+            <div class="back">
+                <img src="assets/images/back-arrow.svg" alt="back icon">
+                <img src="assets/images/easter-basket.svg" alt="egg basket icon">
+                <img src="" alt="">
+            </div>
+        </a>
+        <h1>Highscores</h1>
+        <div class="highscores__table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Place</th>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% scores.forEach((score,index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= score.username %></td>
+                    <td><%= score.score %></td>
+                </tr>
+                <% })%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

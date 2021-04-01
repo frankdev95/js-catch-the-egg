@@ -1,0 +1,234 @@
+@keyframes shake {
+  0% {
+    transform: rotate(0); }
+  20% {
+    transform: rotate(5deg); }
+  40% {
+    transform: rotate(-5deg); }
+  60% {
+    transform: rotate(5deg); }
+  80% {
+    transform: rotate(-5deg); }
+  100% {
+    transform: rotate(0); } }
+
+@keyframes moveInTop {
+  0% {
+    top: 20%;
+    opacity: 0; }
+  75% {
+    top: 41%; }
+  90% {
+    top: 39%; }
+  100% {
+    top: 40%;
+    opacity: 1; } }
+
+@keyframes moveOutTop {
+  0% {
+    top: 40%;
+    left: 50%;
+    opacity: 1; }
+  100% {
+    top: 40%;
+    left: 100%;
+    opacity: 0; } }
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-size: 62.5%;
+  font-family: 'New Tegomin', serif;
+  overflow-y: hidden;
+  overflow-x: hidden; }
+
+.game {
+  background-color: #e4fbff; }
+  .game__paused, .game__over, .game__welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease-in;
+    z-index: 1; }
+    .game__paused-content, .game__over-content, .game__welcome-content {
+      text-align: center; }
+      .game__paused-content h1, .game__over-content h1, .game__welcome-content h1 {
+        font-size: 5rem; }
+    .game__paused-btn, .game__paused-submit-btn, .game__over-btn, .game__over-submit-btn, .game__welcome-btn, .game__welcome-submit-btn {
+      border-radius: 5px;
+      box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      font-family: 'New Tegomin', serif;
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+      padding: 1rem 5rem;
+      text-transform: uppercase; }
+      .game__paused-btn, .game__paused-btn:focus, .game__paused-btn:active, .game__paused-submit-btn, .game__paused-submit-btn:focus, .game__paused-submit-btn:active, .game__over-btn, .game__over-btn:focus, .game__over-btn:active, .game__over-submit-btn, .game__over-submit-btn:focus, .game__over-submit-btn:active, .game__welcome-btn, .game__welcome-btn:focus, .game__welcome-btn:active, .game__welcome-submit-btn, .game__welcome-submit-btn:focus, .game__welcome-submit-btn:active {
+        border: none;
+        outline: none; }
+      .game__paused-btn:hover, .game__paused-submit-btn:hover, .game__over-btn:hover, .game__over-submit-btn:hover, .game__welcome-btn:hover, .game__welcome-submit-btn:hover {
+        box-shadow: 0.3rem 0.3rem 1.2rem rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px); }
+      .game__paused-btn:active, .game__paused-submit-btn:active, .game__over-btn:active, .game__over-submit-btn:active, .game__welcome-btn:active, .game__welcome-submit-btn:active {
+        transform: translateY(0);
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2); }
+  .game__welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .game__welcome-content img {
+      cursor: pointer;
+      width: 15rem; }
+      .game__welcome-content img:hover {
+        animation: shake .5s ease-in-out; }
+    .game__welcome-content p {
+      font-size: 2rem; }
+    .game__welcome-content-info {
+      width: 60%; }
+  .game__welcome-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .game__welcome-form label {
+      font-size: 2.5rem; }
+    .game__welcome-form input {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      padding: 1rem;
+      width: 25rem;
+      margin-top: 1rem; }
+      .game__welcome-form input, .game__welcome-form input:focus {
+        outline: none; }
+  .game__paused, .game__welcome {
+    background-color: #9ddfd3; }
+    .game__paused-btn, .game__welcome-btn {
+      background-color: #29bb89; }
+  .game__over {
+    background-color: #d44000; }
+    .game__over h2 {
+      font-size: 3rem; }
+    .game__over-btn {
+      background-color: #be0000; }
+    .game__over-submit-btn {
+      background-color: #29bb89;
+      margin-right: 2rem; }
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #edeef7;
+  padding: 0 5rem;
+  height: 8rem;
+  width: 100%; }
+  .hud__score, .hud__lives {
+    text-transform: uppercase;
+    font-size: 2.5rem; }
+
+.entity {
+  position: absolute; }
+
+.show {
+  opacity: 1;
+  pointer-events: initial; }
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'Kiwi Maru', sans-serif;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 150px;
+  text-align: center; }
+  .tooltip__tip {
+    background-color: #ffffff;
+    border: 1px solid #9ddfd3;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    position: relative;
+    padding: 3rem 2rem;
+    text-align: center; }
+  .tooltip__content {
+    font-size: 1.5rem; }
+  .tooltip__close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    background-color: #edeef7;
+    border-radius: 50%;
+    border: 1px solid #9ddfd3;
+    color: #9ddfd3;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem; }
+
+.message {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  border: 2px solid #e4fbff;
+  display: none;
+  padding: .5rem 2rem;
+  width: max-content;
+  margin-top: 1rem; }
+  .message p {
+    font-size: 1.7rem; }
+
+.highscores-icon {
+  position: absolute;
+  top: 2rem;
+  right: 4rem;
+  cursor: pointer;
+  width: 6rem;
+  transition: all .2s; }
+  .highscores-icon:hover {
+    animation: shake .3s ease-in-out;
+    filter: invert(83%) sepia(34%) saturate(606%) hue-rotate(336deg) brightness(104%) contrast(96%); }
+
+.highscores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #864000;
+  width: 100%;
+  height: 100vh; }
+  .highscores .back {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+    display: flex; }
+    .highscores .back img:nth-of-type(1) {
+      width: 2.5rem;
+      margin-right: 1rem; }
+    .highscores .back img:nth-of-type(2) {
+      width: 5rem; }
+  .highscores h1 {
+    margin: 5rem 0 2rem;
+    font-size: 6.4rem; }
+  .highscores__table table thead {
+    font-size: 3rem; }
+    .highscores__table table thead th {
+      padding-bottom: 1rem; }
+      .highscores__table table thead th:not(:last-child) {
+        padding-right: 2rem; }
+  .highscores__table table td {
+    font-size: 2rem; }
